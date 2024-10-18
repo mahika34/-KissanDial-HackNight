@@ -109,10 +109,9 @@ llm = OpenAI(temperature=0, model="gpt-4")
 memory = ChatMemoryBuffer.from_defaults(token_limit=2048)
 agent_worker = FunctionCallingAgentWorker.from_tools(
   [subsidy_tool, sms_tool], system_prompt=CUSTOM_PROMPT, 
-  memory=memory, llm=llm
+  memory=memory, llm=llm,
   verbose=True,
-  allow_parallel_tool_calls=False,
-)
+  allow_parallel_tool_calls=False)
 agent = agent_worker.as_agent()
 
 @app.route("/voice", methods=['POST'])
